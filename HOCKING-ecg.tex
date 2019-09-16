@@ -1,0 +1,34 @@
+\documentclass[12pt]{article}
+\usepackage[cm]{fullpage}
+\usepackage{hyperref}
+\usepackage{natbib}
+\usepackage{tikz}
+\usepackage{amssymb,amsmath}
+\DeclareMathOperator*{\minimize}{minimize}
+
+\begin{document}
+
+\title{GFPOP for ECG data}
+\author{Toby Dylan Hocking}
+\maketitle
+
+
+\begin{figure}
+  \includegraphics[width=\textwidth]{figure-two-ecg-graphs-data}
+
+  \input{figure-two-ecg-graphs}
+  \caption{\label{fig:ecg} In these electrocardiogram data, it is
+    important for models (\textcolor{blue}{blue}) to accurately detect
+    the QRS complex (Q is before the peak, R is the peak marked in
+    \textcolor{red}{red}, S is the local minimum after the
+    peak). \textbf{Top:} Previous model of \citet{PanTompkins1985}
+    mistakenly predicts S at the peak. \textbf{Bottom:} proposed
+    constrained changepoint model using a graph with 9 vertices
+    accurately predicts R at each peak.}
+
+\end{figure}
+
+\bibliographystyle{abbrvnat}
+\bibliography{refs}
+
+\end{document}

@@ -1,0 +1,61 @@
+** 16 Sep 2019
+
+[[file:figure-two-ecg-graphs.R]] makes
+
+[[file:figure-two-ecg-graphs.tex]] and [[file:figure-two-ecg-graphs-data.png]]
+which look like
+
+[[file:figure-two-ecg-graphs-data-graph.png]]
+
+[[file:figure-two-ecg-graphs-only-graph.png]]
+
+** May 2019
+
+Brandon Dunn labeled ECG data sets
+[[file:2019-05-brandon-labeled-ecg-data.tgz]]
+
+Here are some ECG data with visual labels created by Brandon Dunn
+during his independent study this semester. I would like to share them
+with you because I think they will be useful for training and/or
+testing machine learning algorithms for detecting the QRS complex.
+
+- The ecg sub-directory has 8 noisy data sets in txt/csv format. the
+  first three columns indicate the chromosome/start/end position and
+  the fourth column is the noisy ECG measurement (millivolts).
+- the labels sub-directory has 8 corresponding label files, one for
+  each data set. The columns are as follows
+1. user_id: the user ID of the person who created the label
+   (bd288@nau.edu = Brandon Dunn).
+2. profile_id: data set name (should be same as file name).
+3-5. chromosome/min/max indicate the position of the label. chromosome
+   is an artifact from my SegAnnDB labeling software which was
+   originally designed for genomic data. In these data you just need
+   to make sure to match the chromosome listed here (e.g. 3) with the
+   corresponding value in the first column of the corresponding txt
+   file (e.g. chr3).
+6. type: ignore (should always be breakpoints).
+7. annotation: label, indicates what should be predicted in the
+   corresponding region. e.g. R-peak means that exactly 1 R-peak
+   should be predicted in [min,max] on the corresponding chromosome.
+
+Given any model/prediction, we can use these data to compute false
+positive / false negative rates / ROC curves / AUC, along with
+prediction accuracy (in terms of number/percent correctly predicted
+labels). False positive R-peak label = two or more R predicted in that
+region. False negative R-peak label = zero R predicted in that region.
+
+Overall there are 8 time series with 2007 labeled regions.
+
+#+BEGIN_SRC 
+th798@cmp2986 MINGW64 ~/Desktop/2019-05-brandon-labeled-ecg-data/labels
+$ wc -l *
+   256 a142s_annot
+   743 a287l_annot
+   112 b341l_annot
+   133 b451l_annot
+   163 f499l_annot
+   160 f593l_annot
+   277 t357l_annot
+   163 v721l_annot
+  2007 total
+#+END_SRC
