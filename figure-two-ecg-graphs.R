@@ -123,7 +123,7 @@ dev.off()
 ## bottom part of figure
 cat(tikz.tex <- data.table(myGraph)[type != "null", paste(c("
 \\definecolor{deepskyblue}{RGB}{0,191,255}
-\\begin{tikzpicture}[->,>=latex,shorten >=1pt,auto,node distance=1.4cm,
+\\begin{tikzpicture}[->,>=latex,shorten >=1pt,auto,node distance=1.3cm,
       thick,main node/.style={circle,draw}]
 ", sprintf(
   "\\node[main node, fill=%s, text=blue] (%s) %s {%s};\n",
