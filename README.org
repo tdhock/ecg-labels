@@ -1,3 +1,16 @@
+** 17 Jan 2020
+
+[[file:figure-one-ecg-graph.R]] makes
+
+[[file:figure-one-ecg-graph-data.png]] 
+
+and corresponding graph
+
+[[file:figure-one-ecg-graph.tex]]
+
+see [[file:HOCKING-ecg.tex]] for figure caption source and rendered figure
+in [[file:HOCKING-ecg.pdf]]
+
 ** 16 Sep 2019
 
 [[file:figure-two-ecg-graphs.R]] makes
