@@ -28,6 +28,36 @@
 
 \end{figure}
 
+
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{figure-one-ecg-graph-data}
+    
+    \input{figure-one-ecg-graph}
+    \vskip -0.5cm
+    \caption{In these electrocardiogram data, it is important for
+      models (\textcolor{blue}{blue}) to accurately detect the QRS
+      complex (Q is before the peak, R is the peak marked in
+      \textcolor{red}{red}, S is the local minimum after the peak,
+      other states o1--6). \textbf{Top:} Previous model of
+      \citet{PanTompkins1985} mistakenly predicts S at the
+      peak. \textbf{Middle:} proposed constrained change-point model
+      accurately predicts R at each peak.  \textbf{Bottom:} graph
+      structure of proposed nine-state constrained change-point model.
+      Below each edge $e$ we show the penalty $\lambda_e$, which is
+      either a constant $\lambda>0$ or zero if nothing is shown; above
+      we show the constants $\delta_e,\gamma_e$ in the constraint
+      function
+      $g_e(m_i,m_{i+1})= \delta_e(m_i - m_{i+1})+\gamma_e\leq 0$
+      ($\delta_e=1$ for a non-decreasing change, $\delta_e=-1$ for a
+      non-increasing change, $\gamma_e \geq 0$ is the minimum
+      magnitude of change).
+    %source: https://github.com/tdhock/gfpop/blob/genomics/vignettes/applications.Rmd
+  }
+\end{figure}
+
 \bibliographystyle{abbrvnat}
 \bibliography{refs}
 
