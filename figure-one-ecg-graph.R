@@ -130,7 +130,7 @@ cat(tikz.tex <- data.table(myGraph)[type != "null", paste(c("
       type=="up", 1, -1),
     parameter/1e3),
   ##below
-  ifelse(penalty==0, "", "$\\lambda$"),
+  ifelse(penalty==0, "", "$\\beta$"),
   state2), ";
 \\end{tikzpicture}
 "), sep="\n")], file="figure-one-ecg-graph.tex")
