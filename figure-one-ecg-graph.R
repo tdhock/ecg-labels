@@ -7,15 +7,15 @@ m <- function(x){
     "Previous model", "Proposed model"))
 }
 arg.list <- list(
-  list("o1", "Q",      "down", 8000000, gap=0),
-  list("Q",  "R",      "up",   0,        gap=2000),
+  list("Q",  "R",      "up",   8000000,  gap=2000),
   list("R",  "S",      "down", 0,        gap=5000),
-  list("S",  "o2",     "up",   0,        gap=2000),
-  list("o2", "o3",     "up",   0,        gap=1000),
-  list("o3", "o4",     "up",   0,        gap=0),
+  list("S",  "o1",     "up",   0,        gap=2000),
+  list("o1", "o2",     "up",   0,        gap=1000),
+  list("o2", "o3",     "up",   0,        gap=0),
+  list("o3", "o4",     "down", 0,        gap=0),
   list("o4", "o5",     "down", 0,        gap=0),
-  list("o5", "o6",     "down", 0,        gap=0),
-  list("o6", "o1",     "up",   0,        gap=0))
+  list("o5", "o6",     "up",   0,        gap=0),
+  list("o6", "Q",      "down", 0,        gap=0))
 model.dt.list <- list(
   previous=ECG$PanTompkins[, data.table(
     n.states=NA,
@@ -108,6 +108,7 @@ print(gg)
 dev.off()
 
 ## bottom part of figure
+first.state <- arg.list[[1]][[1]]
 cat(tikz.tex <- data.table(myGraph)[type != "null", paste(c("
 \\definecolor{deepskyblue}{RGB}{0,191,255}
 \\begin{tikzpicture}[->,>=latex,shorten >=1pt,auto,node distance=1.5cm,
@@ -116,13 +117,14 @@ cat(tikz.tex <- data.table(myGraph)[type != "null", paste(c("
   "\\node[main node, fill=%s, text=blue] (%s) %s {%s};\n",
   "white",
   state1,
-  ifelse(state2=="Q", "", paste0("[right of=", c(NA, state1[-.N]), "]")),
+  ifelse(
+    state1==first.state, "", paste0("[right of=", c(NA, state1[-.N]), "]")),
   state1), "
 \\path[every node/.style={font=\\sffamily\\small}]
 ", sprintf(
   "(%s) edge [bend left%s] node [above] {%s} node [below] {%s} (%s)\n",
   state1, ifelse(
-    state2=="o1", ", looseness=0.5", ""),
+    state2==first.state, ", looseness=0.5", ""),
   ##above
   sprintf(
     "$%s, %s$",
