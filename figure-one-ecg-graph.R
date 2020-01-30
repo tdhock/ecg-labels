@@ -107,7 +107,6 @@ png("figure-one-ecg-graph-data.png", 8, 2.6, res=400, units="in")
 print(gg)
 dev.off()
 
-## bottom part of figure
 cat(tikz.tex <- data.table(myGraph)[type != "null", paste(c("
 \\definecolor{deepskyblue}{RGB}{0,191,255}
 \\begin{tikzpicture}[->,>=latex,shorten >=1pt,auto,node distance=1.5cm,
@@ -128,6 +127,36 @@ cat(tikz.tex <- data.table(myGraph)[type != "null", paste(c("
     "$%s, %s$",
     ifelse(
       type=="up", 1, -1),
+    parameter/1e3),
+  ##below
+  ifelse(penalty==0, "", "$\\beta$"),
+  state2), ";
+\\end{tikzpicture}
+"), sep="\n")], file="figure-one-ecg-graph-integers.tex")
+
+## bottom part of figure
+cat(tikz.tex <- data.table(myGraph)[type != "null", paste(c("
+\\definecolor{deepskyblue}{RGB}{0,191,255}
+\\begin{tikzpicture}[->,>=latex,shorten >=1pt,auto,node distance=1.5cm,
+      thick,main node/.style={circle,draw}]
+", sprintf(
+  "\\node[main node, fill=%s, text=blue] (%s) %s {%s};\n",
+  "white",
+  state1,
+  ifelse(state2=="Q", "", paste0("[right of=", c(NA, state1[-.N]), "]")),
+  state1), "
+\\path[every node/.style={font=\\sffamily\\small}]
+", sprintf(
+  "(%s) edge [bend left%s] node [above] {%s} node [below] {%s} (%s)\n",
+  state1, ifelse(
+    state2=="o1", ", looseness=0.5", ""),
+  ##above
+  sprintf(
+    "$%s, %s$",
+    ifelse(
+      type=="up",
+      "\\uparrow",
+      "\\downarrow"),
     parameter/1e3),
   ##below
   ifelse(penalty==0, "", "$\\beta$"),

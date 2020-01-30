@@ -13,14 +13,14 @@
  \node[main node, fill=white, text=blue] (o6) [right of=o5] {o6};
  
 \path[every node/.style={font=\sffamily\small}]
- (o1) edge [bend left] node [above] {$\downarrow, 0$} node [below] {$\beta$} (Q)
- (Q) edge [bend left] node [above] {$\uparrow, 2$} node [below] {} (R)
- (R) edge [bend left] node [above] {$\downarrow, 5$} node [below] {} (S)
- (S) edge [bend left] node [above] {$\uparrow, 2$} node [below] {} (o2)
- (o2) edge [bend left] node [above] {$\uparrow, 1$} node [below] {} (o3)
- (o3) edge [bend left] node [above] {$\uparrow, 0$} node [below] {} (o4)
- (o4) edge [bend left] node [above] {$\downarrow, 0$} node [below] {} (o5)
- (o5) edge [bend left] node [above] {$\downarrow, 0$} node [below] {} (o6)
- (o6) edge [bend left, looseness=0.5] node [above] {$\uparrow, 0$} node [below] {} (o1)
+ (o1) edge [bend left] node [above] {$-1, 0$} node [below] {$\beta$} (Q)
+ (Q) edge [bend left] node [above] {$1, 2$} node [below] {} (R)
+ (R) edge [bend left] node [above] {$-1, 5$} node [below] {} (S)
+ (S) edge [bend left] node [above] {$1, 2$} node [below] {} (o2)
+ (o2) edge [bend left] node [above] {$1, 1$} node [below] {} (o3)
+ (o3) edge [bend left] node [above] {$1, 0$} node [below] {} (o4)
+ (o4) edge [bend left] node [above] {$-1, 0$} node [below] {} (o5)
+ (o5) edge [bend left] node [above] {$-1, 0$} node [below] {} (o6)
+ (o6) edge [bend left, looseness=0.5] node [above] {$1, 0$} node [below] {} (o1)
  ;
 \end{tikzpicture}
